@@ -70,6 +70,7 @@
   $age = $_POST['age'];
   $phone_no = $_POST['phone_no'];
   $pemail = $_POST['pemail'];
+  $studentpassword = $_POST['studentpassword'];
 
 
 
@@ -81,7 +82,7 @@
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll'");
+    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
 
     $stmt->execute();
     $stmt->close();
