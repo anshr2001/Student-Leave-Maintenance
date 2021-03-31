@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="en">
 
@@ -36,7 +37,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="student_register.html"> Previous </a>
+              <a class="nav-link" href="admin_register.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -61,14 +62,11 @@
 
 <?php
 
-  $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  $studentpassword = $_POST['studentpassword'];
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
+  $adminid = $_POST['adminid'];
+  $adminpassword = $_POST['adminpassword'];
+  $adminname = $_POST['adminname'];
+  $adminphone_no = $_POST['adminphone_no'];
+  $adminemail = $_POST['adminemail'];
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
@@ -78,18 +76,18 @@
   }
   else
   {
-    $sql = "SELECT * FROM studentdetails WHERE studentid = '$studentroll'";
+    $sql = "SELECT * FROM admindetails WHERE adminid = '$adminid'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) != 1)
     {
-      $stmt = $conn->prepare("INSERT INTO studentdetails(studentroll, studentid, studentpassword, studentname, gender, age, phone_no, pemail) VALUES (?,?,?,?,?,?,?,?)");
+      $stmt = $conn->prepare("INSERT INTO admindetails(adminid, adminpassword, adminname,adminphone_no, adminemail) VALUES (?,?,?,?,?)");
 
-      $stmt->bind_param("sssssiis", $studentroll, $studentid, $studentpassword, $studentname, $gender, $age, $phone_no, $pemail);
+      $stmt->bind_param("sssis", $adminid, $adminpassword, $adminname, $adminphone_no, $adminemail);
 
       $stmt->execute();
 
-      echo "Student registration is Successfull";
+      echo "Admin registration is Successfull";
 
       $stmt->close();
 

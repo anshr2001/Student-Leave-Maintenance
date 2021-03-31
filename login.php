@@ -105,6 +105,29 @@
                 echo "<h2> Incorrect Username/Password </h2>";
             }
         }
+        else if($login === 'admin')
+        {
+            $sql = "SELECT * FROM admindetails WHERE adminid = '$username' AND adminpassword = '$password'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) === 1)
+            {
+              $row = mysqli_fetch_assoc($result);
+              if($row['adminid'] === $username && $row['adminpassword'] === $password)
+              {
+                  echo "<h1> Log in Successful </h1>";
+                  header("Location: admin_home.php");
+              }
+              else
+              {
+                  echo " <h2>Incorrect Username/Password </h2>";
+              }
+            }
+            else
+            {
+                echo "<h2> Incorrect Username/Password </h2>";
+            }
+        }
 
       }
   }
