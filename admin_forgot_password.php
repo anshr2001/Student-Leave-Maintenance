@@ -19,7 +19,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- webpage title -->
-  <title>Update Profile ALMS</title>
+  <title>Change Password ALMS</title>
 </head>
 
 <body>
@@ -60,51 +60,58 @@
 </html>
 
 
-<?php
 
-  $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
+
+<?php
+  $adminid = $_POST['adminid'];
   
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
-  $studentpassword = $_POST['studentpassword'];
+  $adminpassword = $_POST['adminpassword'];
 
 
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
   if($conn->connect_error)
-    {
+  {
     die('Connection Failed :'.$conn -> connect_error);
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
 
-    $stmt->execute();
-    $stmt->close();
-
-    echo "<div align=center> Updated the Details Successfully </div>";
-  
-    echo "";
-
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
-
+  	$sql = "SELECT * FROM admindetails WHERE adminid = '$adminid'";
     $result = mysqli_query($conn, $sql);
 
-    echo "<br>";
-    echo "<strong> Details After addition of the details </strong>";
-    echo "<br>";
-    echo "<table border='1' width = 200%>
+ 
+    if(mysqli_num_rows($result) === 1)
+    {
+        $row = mysqli_fetch_assoc($result);
+        if(($row['adminid'] === $adminid))
+        {
+        	$conn1 = new mysqli('localhost','root','','student');
+    		
+          $conn1 = new mysqli('localhost','root','','student');
+          $stmt = $conn1->prepare("UPDATE admindetails SET adminpassword = '$adminpassword' WHERE adminid = '$adminid'");
+
+        $stmt->execute();
+        $stmt->close();
+
+        echo "<div align=center> Changed the Password Successfully </div>";
+  
+        echo "";
+
+        $sql = "SELECT * FROM admindetails WHERE adminid = '$adminid' ";
+
+        $result = mysqli_query($conn, $sql);
+
+        echo "<br>";
+        echo "<strong> Details After addition of the details </strong>";
+        echo "<br>";
+        echo "<table border='1'>
           <tr>
-          <th>Student Roll No</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Gender</th>
-          <th>Age</th>
+          <th>Admin ID</th>
+          <th>Admin Password</th>
+          <th>Admin Name</th>
+          
           <th>Phone Number</th>
           <th>Email</th>
           </tr>";
@@ -113,25 +120,34 @@
     while($row = mysqli_fetch_array($result) )
     {
         echo "<tr>";
-        echo "<td> " . $row['studentroll'] . "</td> ";
-        echo " <td>" . $row['studentid'] . "</td>";
-        echo "<td>" . $row['studentname'] . "</td>";
-        echo "<td>" . $row['gender'] . "</td>";
-
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td>" . $row['phone_no'] . "</td>";
-        echo "<td>" . $row['pemail'] . "</td>";
+       
+        echo " <td>" . $row['adminid'] . "</td>";
+        echo " <td>" . $row['adminpassword'] . "</td>";
+        echo "<td>" . $row['adminname'] . "</td>";
+       
+        echo "<td>" . $row['adminphone_no'] . "</td>";
+        echo "<td>" . $row['adminemail'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
 
-    echo "<hr size = 3 noshade color = red>";
-    echo "<div align = center> <strong> Leave Management System </strong> </div>";
-    echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
-    echo "<div align = center> <strong> Coimbatore</strong> </div>";
-    echo "<hr size = 3 noshade color = red>";
 
+    		echo "<hr size = 3 noshade color = red>";
+    		echo "<div align = center> <strong> Leave Management System </strong> </div>";
+    		echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
+    		echo "<div align = center> <strong> Coimbatore</strong> </div>";
+    		echo "<hr size = 3 noshade color = red>";
+        }
 
+        else
+        {
+        	echo "<h2> Username and Password doesn't Match </h2>";
+        }
+    }
+    else
+    {
+    	echo "<h2> Username and Password doesn't Match </h2>";
+    }
 
     $conn->close();
     //header("Location: success.html");

@@ -46,24 +46,23 @@
   </section>
 
 <section>
-  <div class="bg">
-    
-    <!--
-    <a href="apply.html">  
+    <div id="gallery" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+      <ol class="carousel-indicators">
+        <li data-target="#gallery" data-slide-to="0" class="active"></li>
+        <li data-target="#gallery" data-slide-to="1"></li>
+        <li data-target="#gallery" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- all images in carousel use the class cropped -->
+          <img src="adminpic.webp" class="d-block w-10 size cropped" alt="main">
+        </div>
+    </div>
+  </div>
+  </section>
 
-      <button type="submit" name="leaveapplication" class='button'><span>Apply a Leave</span></button>
-    </a> -->
-
-    <!--
-    <a href="admin_view_leave.html"> 
-      <button type="submit" name="profileupdate" class='button'><span>View Pending Leave Requests</span></button>
-    </a> -->
-
-	<a href="admin_view_leave.html"> 
-		<br>
-		<br>
-      <span><strong> View Pending Leave Requests </strong> </span>
-    </a>    
+<section>
+  <div class="bg"> 
 
     <a href="admin_update_profile.html"> 
     	<br>
@@ -71,14 +70,28 @@
       <button type="submit" name="profileupdate" class='button'><span>Update my profile</span></button>
     </a>
 
+    <p> An Admin can update his/her home profile like Name, Phone Number, Mail </p>
+
     <a href="admin_update_password.html">
     	<br>
     	<br>
       <button type="submit" name="passwordupdate" class='button'><span>Update Password</span></button>
     </a>
 
+    <p> An Admin can update his/her password by giving userid and current password </p>
+
   </div>
 </section>
+
+<footer class="bg-danger text-center spacing-2">
+  <div id="contact">
+    <i class="social-icon fab fa-facebook-f"></i>
+    <i class="social-icon fab fa-twitter"></i>
+    <i class="social-icon fab fa-instagram"></i>
+    <i class="social-icon fas fa-envelope"></i>
+    <p class="dev">© C12 - Leave</p>
+  </div>
+</footer>
 
 </body>
 </html>

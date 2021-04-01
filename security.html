@@ -1,10 +1,11 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Student Registration</title>
+  <title>Student Forgot Password</title>
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:ital,wght@1,300&family=Roboto:wght@300&display=swap" rel="stylesheet">
   <!-- favicon -->
@@ -38,7 +39,7 @@
             </li>
 
             <li>
-              <a class="nav-link" href="index.html"> Previous </a>
+              <a class="nav-link" href="login.html"> Previous </a>
             </li>
           </ul>
         </div>
@@ -49,13 +50,13 @@
     <div class="container">
       <div class="pl-0 text-left">
         <br><br>
-        <h1>Student Registration</h1>
+        <h1>Student Change Password</h1>
         <br>
       </div>
       <div class="row">
         <div class="col-md-8 order-md-1 box">
           <h4 class="mb-3">Student Details</h4>
-          <form action="student_register.php" method="post">
+          <form action="security.php" method="post">
           <!-- class="needs-validation" novalidate> -->
 
           <div class="col-md-6 mb-3">
@@ -73,69 +74,18 @@
               </div>
             </div>
 
-
           <div class="col-md-6 mb-3">
-            <label for="patientpassword">Create a Password</label>
-            <input type="password" class="form-control" name = "studentpassword" id="Patientpassword" required>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="Name">Student Name</label>
-            <input type="text" class="form-control" name = "studentname" id="name" required>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="gender">Gender</label>
-            <select class="custom-select d-block w-100" name = "gender" id="gender" required>
-              <option value="">Choose...</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Others</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3">
-              <label for="age">Age</label>
-              <div class="input-group">
-                <input type="number" class="form-control" name="age" id="age" min="0" max="25" required>
-              </div>
-            </div>
-
-        
-        <div class="col-md-6 mb-3">
-              <label for="phoneNumber">Phone Number</label>
-              <input type="number" class="form-control" name="phone_no" min=10000 pattern="[0-9]{10}" id="phone_no" required>
-              <div class="invalid-feedback">
-                Please provide a valid phone number
-              </div>
-            </div> 
-
-          <div class="col-md-6 mb-3">
-              <label for="email">Email</label>
-              <input type="email" name="pemail" class="form-control" id="email" required>
-              <div class="invalid-feedback">
-                Please provide a valid email.
-              </div>
-            </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="Name">Security Question - Your Favorite Movie</label>
+            <label for="Name">Security Question - 1: Your Favorite Movie</label>
             <input type="text" class="form-control" name = "secanswer1" id="name" required>
           </div>
-
+          
           <div class="col-md-6 mb-3">
-            <label for="Name">Security Question2 - First Vehicle Used</label>
+            <label for="Name">Security Question - 2: Your Fisrt Vehicle Used</label>
             <input type="text" class="form-control" name = "secanswer2" id="name" required>
           </div>
     
-            
           <hr class="col-md-6 mb-3">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="save-info">
-            <label class="custom-control-label" for="save-info">Save this information for next time</label>
-          </div>
-          <hr class="col-md-6 mb-3">
-          <button class="btn btn-primary btn-lg btn-block"type="submit">Register</button>
+          <button class="btn btn-primary btn-lg btn-block"type="submit">Verify Answers</button>
         </form>
         </div>
       </div>

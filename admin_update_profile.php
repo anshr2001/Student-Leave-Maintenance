@@ -1,4 +1,7 @@
 
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +20,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- webpage title -->
-  <title>Leave Management System</title>
+  <title>Update Profile ALMS</title>
 </head>
 
 <body>
@@ -28,7 +31,7 @@
         <!-- apollo symbol -->
         <img src="css/images/amritafinal.svg" class="logo-1" alt="logo">
         <!-- apollo x title -->
-        <h1 class="logo-2"> Leave Management System</h1>
+        <h1 class="logo-2"> Leave Management System </h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shrink">
           <span class="navbar-toggler-text"> Menu </span>
         </button>
@@ -36,7 +39,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="student_register.html"> Previous </a>
+              <a class="nav-link" href="admin_update_profile.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -49,7 +52,7 @@
     </div>
   </section>
   <h1 align="center">Leave Management System </h1>
-  <!-- <h2 align = "center"> Patients List </h2> -->
+  <h2 align = "center"> Details </h2>
 
   <hr size = "3" noshade color = "red">
 
@@ -58,52 +61,75 @@
 </html>
 
 
-
 <?php
 
-  $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  $studentpassword = $_POST['studentpassword'];
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
+  $adminid = $_POST['adminid'];
+  $adminpassword = $_POST['adminpassword'];
+  
+  $adminname = $_POST['adminname'];
+  $adminphone_no = $_POST['adminphone_no'];
+  $adminemail = $_POST['adminemail'];
+  
 
-  $secanswer1 = $_POST['secanswer1']; 
-  $secanswer2 = $_POST['secanswer2'];  
+
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
   if($conn->connect_error)
-  {
+    {
     die('Connection Failed :'.$conn -> connect_error);
   }
   else
   {
-    $sql = "SELECT * FROM studentdetails WHERE studentid = '$studentroll'";
+    $stmt = $conn->prepare("UPDATE admindetails SET adminname = '$adminname', adminphone_no = '$adminphone_no',adminemail = '$adminemail'  WHERE adminid = '$adminid' AND adminpassword = '$adminpassword'");
+
+    $stmt->execute();
+    $stmt->close();
+
+    echo "<div align=center> Updated the Details Successfully </div>";
+  
+    echo "";
+
+    $sql = "SELECT * FROM admindetails WHERE adminid = '$adminid'";
+
     $result = mysqli_query($conn, $sql);
 
-    if(mysqli_num_rows($result) != 1)
+    echo "<br>";
+    echo "<strong> Details After addition of the details </strong>";
+    echo "<br>";
+    echo "<table border='1'>
+          <tr>
+      
+          <th>Admin Username</th>
+          <th>Admin Name</th>
+         
+          <th>Phone Number</th>
+          <th>Email</th>
+          </tr>";
+
+
+    while($row = mysqli_fetch_array($result))
     {
-      $stmt = $conn->prepare("INSERT INTO studentdetails(studentroll, studentid, studentpassword, studentname, gender, age, phone_no, pemail,secanswer1,secanswer2) VALUES (?,?,?,?,?,?,?,?,?,?)");
-
-      $stmt->bind_param("sssssiisss", $studentroll, $studentid, $studentpassword, $studentname, $gender, $age, $phone_no, $pemail, $secanswer1, $secanswer2);
-
-      $stmt->execute();
-
-      echo "Student registration is Successfull";
-
-      $stmt->close();
-
-      $conn->close();
-      //header("Location: success.html");
+        echo "<tr>";
+        echo " <td>" . $row['adminid'] . "</td>";
+        echo "<td>" . $row['adminname'] . "</td>";
+  
+        echo "<td>" . $row['adminphone_no'] . "</td>";
+        echo "<td>" . $row['adminemail'] . "</td>";
+        echo "</tr>";
     }
-    else
-    {
-      echo "Username is already taken!! Try registering with new Username";
-    }
-    
+    echo "</table>";
+
+    echo "<hr size = 3 noshade color = red>";
+    echo "<div align = center> <strong> Leave Management System </strong> </div>";
+    echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
+    echo "<div align = center> <strong> Coimbatore</strong> </div>";
+    echo "<hr size = 3 noshade color = red>";
+
+
+
+    $conn->close();
+    //header("Location: success.html");
   }
 
 
