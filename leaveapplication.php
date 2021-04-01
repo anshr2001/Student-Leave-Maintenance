@@ -1,4 +1,7 @@
 
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +20,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- webpage title -->
-  <title>Leave Management System</title>
+  <title>Update Profile ALMS</title>
 </head>
 
 <body>
@@ -28,7 +31,7 @@
         <!-- apollo symbol -->
         <img src="css/images/amritafinal.svg" class="logo-1" alt="logo">
         <!-- apollo x title -->
-        <h1 class="logo-2"> Leave Management System</h1>
+        <h1 class="logo-2"> Leave Management System </h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shrink">
           <span class="navbar-toggler-text"> Menu </span>
         </button>
@@ -36,7 +39,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="student_register.html"> Previous </a>
+              <a class="nav-link" href="apply_leave.php"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -49,7 +52,7 @@
     </div>
   </section>
   <h1 align="center">Leave Management System </h1>
-  <!-- <h2 align = "center"> Patients List </h2> -->
+  <h2 align = "center"> Details </h2>
 
   <hr size = "3" noshade color = "red">
 
@@ -58,20 +61,18 @@
 </html>
 
 
-
 <?php
 
-  $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  $studentpassword = $_POST['studentpassword'];
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
+  $leavestartdate = $_POST['leavestartdate'];
+  $numdays = $_POST['numdays'];
+  $leavetype = $_POST['leavetype'];
 
-  $secanswer1 = $_POST['secanswer1']; 
-  $secanswer2 = $_POST['secanswer2'];  
+  $studentroll = $_POST['studentroll'];
+  $studentpassword = $_POST['studentpassword'];
+
+  
+
+
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
@@ -81,18 +82,18 @@
   }
   else
   {
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
+    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll' AND studentpassword = '$studentpassword'";
     $result = mysqli_query($conn, $sql);
 
-    if(mysqli_num_rows($result) != 1)
+    if(mysqli_num_rows($result) === 1)
     {
-      $stmt = $conn->prepare("INSERT INTO studentdetails(studentroll, studentid, studentpassword, studentname, gender, age, phone_no, pemail,secanswer1,secanswer2) VALUES (?,?,?,?,?,?,?,?,?,?)");
+      $stmt = $conn->prepare("INSERT INTO leavedetails(leavestartdate, numdays, leavetype, studentroll) VALUES (?,?,?,?)");
 
-      $stmt->bind_param("sssssiisss", $studentroll, $studentid, $studentpassword, $studentname, $gender, $age, $phone_no, $pemail, $secanswer1, $secanswer2);
+      $stmt->bind_param("siss", $leavestartdate, $numdays, $leavetype, $studentroll);
 
       $stmt->execute();
 
-      echo "Student registration is Successfull";
+      echo "<h1> Applied Leave Successfully </h1>";
 
       $stmt->close();
 
@@ -101,7 +102,7 @@
     }
     else
     {
-      echo "Username is already taken!! Try registering with new Username";
+      echo "<h1> Username and Password doesn't Match </h1>";
     }
     
   }
