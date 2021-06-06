@@ -16,5 +16,8 @@ INSERT INTO `student`.admindetails VALUES ('Senthil@1990','Senthil_amrita','Sent
 INSERT INTO `student`.admindetails VALUES ('Prashanth@2020','prashanth_1991','Prashanth Nair',9943984483,'prashanth_amrita@gmail.com','Computer Organization','Coimbatore');
 
 INSERT INTO `student`.admindetails VALUES ('Govindarajan@2018','govind@1992','Govindarajan',9047610726,'govindarajan_2018@gmail.com','Compiler Design','Mumbai');
+INSERT INTO `student`.admindetails VALUES ('Suchitra@2009','Suchithra_1990','Suchithra',9952597938,'suchithra_2000@gmail.com','Open Lab Python','Chennai');
+
+INSERT INTO `student`.admindetails VALUES ('Sabarishn@cse','sabarish_cse_2000','Sabarish',9486245160,'sabarish_cse@gmail.com','Computer Programming','Coimbatore');
 
 SELECT * FROM `student`.admindetails;
