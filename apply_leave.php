@@ -71,6 +71,43 @@
 
     <p>    Students can apply leave by providing the details like type of leave, starting date,number of days and can get approvedby a particular admin </p>
 
+    <br>
+    <a href="leave_history.html"> 
+
+      <button type="submit" name="leavehistory" class='button'><span>View Leave History</span></button>
+    </a>
+
+    <p>    Students can view their already applied leave details and also can know the status of the particular leaves </p>
+
+    <br>
+    <a href="upload_doc.html"> 
+
+      <button type="submit" name="uploaddoc" class='button'><span>Upload Assisting Documents</span></button>
+    </a>
+
+    <p>    Students can Upload the assisting documents of their corresponding leave like OD form or medical form</p>
+
+    <br>
+    <a href="modify_leave.html"> 
+      <button type="submit" name="modifyleave" class='button'><span>Modify Leave Details</span></button>
+    </a>
+
+    <p>    Students can Modify their Leave Details if the Leave is in the Pending State</p>
+
+    <br>
+    <a href="cancel_leave.html"> 
+      <button type="submit" name="cancelleave" class='button'><span>Cancel Leave</span></button>
+    </a>
+
+    <p>    Students can Cancel their leave by providing the necessary details</p>
+
+    <br>
+    <a href="download_leave.html"> 
+      <button type="submit" name="downloadleave" class='button'><span>Download Leave</span></button>
+    </a>
+
+    <p>    Students can Cancel their leave by providing the necessary details</p>
+
     
     <br>
     <a href="update_profile.html"> 
@@ -87,6 +124,7 @@
 
     <p>    Students can Update their their by providing the username, roll number, current password and save their new password to the database</p>
 
+
     <br>
 
   </div>
@@ -94,10 +132,10 @@
 
 <footer class="bg-danger text-center spacing-2">
   <div id="contact">
-    <i class="social-icon fab fa-facebook-f"></i>
-    <i class="social-icon fab fa-twitter"></i>
-    <i class="social-icon fab fa-instagram"></i>
-    <i class="social-icon fas fa-envelope"></i>
+    <em class="social-icon fab fa-facebook-f"></em>
+    <em class="social-icon fab fa-twitter"></em>
+    <em class="social-icon fab fa-instagram"></em>
+    <em class="social-icon fas fa-envelope"></em>
     <p class="dev">© C12 - Leave</p>
   </div>
 </footer>

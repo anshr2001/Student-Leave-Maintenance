@@ -48,9 +48,9 @@
       </nav>
     </div>
   </section>
-  <h1 align="center">ALMS - Apply Leave </h1>
+  <h1>ALMS - Apply Leave </h1>
 
-  <hr size = "3" noshade color = "red">
+  <hr>
 
   <?php $PHP_SELF;?>
 </body>

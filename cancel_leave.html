@@ -1,5 +1,6 @@
 
 
+
 <!doctype html>
 <html lang="en">
 
@@ -56,7 +57,7 @@
       <div class="row">
         <div class="col-md-8 order-md-1 box">
           <h4 class="mb-3">Profile Details</h4>
-          <form action="leaveapplication.php" method="post">
+          <form action="cancel_leave.php" method="post">
   
           <div class="col-md-6 mb-3">
             <label for="PrescriptionNo">Enter the Roll No</label>
@@ -74,24 +75,10 @@
   			<input type="date" class="form-control" name="leavestartdate" id="leavestartdate">
           </div>    
 
-          <div class="col-md-6 mb-3">
-          	<label for="numdays">Number of Days of Leave (between 1 and 5):</label>
-			<input type="number" class="form-control" name="numdays" id="numdays" min="1" max="5"> 
-		</div>    
-
-		<div class="col-md-6 mb-3">
-            <label for="leavetype">Choose the Leave Type</label>
-            <select class="custom-select d-block w-100" name = "leavetype" id="leavetype" required>
-              <option value="">Choose...</option>
-              <option>Medical Leave</option>
-              <option>Family Leave</option>
-              <option>On-Duty Leave</option>
-              <option>Emergency Leave</option>
-            </select>
-        </div> 
+        
 
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block"type="submit">Update Details</button>
+          <button class="btn btn-primary btn-lg btn-block"type="submit">Delete the Leave</button>
         </form>
         </div>
       </div>

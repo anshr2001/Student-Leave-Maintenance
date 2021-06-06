@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en">
 
@@ -19,7 +17,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- webpage title -->
-  <title>Update Profile ALMS</title>
+  <title>Update Leave Details</title>
 </head>
 
 <body>
@@ -38,7 +36,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="apply_leave.php"> Previous </a>
+              <a class="nav-link" href="modify_leave.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -54,7 +52,7 @@
   <h2> Details </h2>
 
   <hr>
- 
+
   <?php $PHP_SELF;?>
 </body>
 </html>
@@ -63,14 +61,15 @@
 <?php
 
   $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
   $studentpassword = $_POST['studentpassword'];
+  $status_leave = "Pending";
+
+  $leavestartdate = $_POST['leavestartdate'];
+  $numdays = $_POST['numdays'];
+  $leavetype = $_POST['leavetype'];
+
+  $leavestartdate1 = $_POST['leavestartdate1'];
+  
 
 
 
@@ -82,45 +81,55 @@
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
+  	$sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll' AND studentpassword = '$studentpassword'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+    if(mysqli_num_rows($result) === 1)
+    {
+    	
+
+    	$stmt = $conn->prepare("UPDATE leavedetails SET leavestartdate = '$leavestartdate1',numdays = '$numdays',leavetype = '$leavetype'  WHERE studentroll = '$studentroll' AND leavestartdate = '$leavestartdate' AND status_leave = 'Pending'"); 
+
+    	//leavestartdate = '$leavestartdate1',
 
     $stmt->execute();
     $stmt->close();
 
-    echo "<div align=center> Updated the Details Successfully </div>";
+    echo "<div align=center> Updated the Leave Details Successfully </div>";
   
     echo "";
 
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
+    $sql1 = "SELECT * FROM leavedetails WHERE studentroll = '$studentroll'";
 
-    $result = mysqli_query($conn, $sql);
+    $result1 = mysqli_query($conn, $sql1);
 
     echo "<br>";
-    echo "<strong> Details After addition of the details </strong>";
+    echo "<strong> Details After Modification </strong>";
     echo "<br>";
-    echo "<table border='1' width = 200%>
+    echo "<table border='1'>
           <tr>
-          <th>Student Roll No</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Phone Number</th>
-          <th>Email</th>
+      
+          <th>Student Roll Number</th>
+          <th>Leave Start Date</th>
+         
+          <th>Number Of Days</th>
+          <th>Leave Type</th>
+          <th>Leave Status</th>
           </tr>";
 
 
-    while($row = mysqli_fetch_array($result) )
+    while($row = mysqli_fetch_array($result1))
     {
         echo "<tr>";
-        echo "<td> " . $row['studentroll'] . "</td> ";
-        echo " <td>" . $row['studentid'] . "</td>";
-        echo "<td>" . $row['studentname'] . "</td>";
-        echo "<td>" . $row['gender'] . "</td>";
+        echo " <td>" . $row['studentroll'] . "</td>";
+        echo "<td>" . $row['leavestartdate'] . "</td>";
+  
+        echo "<td>" . $row['numdays'] . "</td>";
+        echo "<td>" . $row['leavetype'] . "</td>";
+        echo "<td>" . $row['status_leave'] . "</td>";
 
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td>" . $row['phone_no'] . "</td>";
-        echo "<td>" . $row['pemail'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -131,10 +140,20 @@
     echo "<div align = center> <strong> Coimbatore</strong> </div>";
     echo "<hr size = 3 noshade color = red>";
 
-
-
     $conn->close();
+
+    }
+
+    else
+    {
+    	echo "Student Roll Number and Password doesn't Match";
+    }
+
+
+
+    
   }
 
 
  ?>
+

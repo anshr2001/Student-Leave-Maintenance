@@ -1,12 +1,13 @@
 
 
+
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Apply Leave</title>
+  <title>Update Leave Details</title>
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:ital,wght@1,300&family=Roboto:wght@300&display=swap" rel="stylesheet">
   <!-- favicon -->
@@ -50,29 +51,34 @@
     <div class="container">
       <div class="pl-0 text-left">
         <br><br>
-        <h1>Provide details for Leave Application</h1>
+        <h1>Update Details</h1>
         <br>
       </div>
       <div class="row">
         <div class="col-md-8 order-md-1 box">
           <h4 class="mb-3">Profile Details</h4>
-          <form action="leaveapplication.php" method="post">
-  
+          <form action="modify_leave.php" method="post">
+
           <div class="col-md-6 mb-3">
-            <label for="PrescriptionNo">Enter the Roll No</label>
+            <label for="Username">Enter the Roll Number</label>
             <input type="text" class="form-control" name = "studentroll" id="studentroll" required>
           </div>
 
 
           <div class="col-md-6 mb-3">
-            <label for="MedicineName">Enter the Student's Password</label>
+            <label for="Password">Enter the Password</label>
             <input type="password" class="form-control" name = "studentpassword" id="studentpassword" required>
           </div>
 
-		  <div class="col-md-6 mb-3">
-            <label for="leavedate">Choose the leave start date</label>
+          <div class="col-md-6 mb-3">
+            <label for="leavedate">Previously choosen leave start date</label>
   			<input type="date" class="form-control" name="leavestartdate" id="leavestartdate">
-          </div>    
+          </div> 
+   
+   		<div class="col-md-6 mb-3">
+            <label for="leavedate1">Modified leave start date</label>
+  			<input type="date" class="form-control" name="leavestartdate1" id="leavestartdate1">
+          </div>
 
           <div class="col-md-6 mb-3">
           	<label for="numdays">Number of Days of Leave (between 1 and 5):</label>
@@ -90,13 +96,15 @@
             </select>
         </div> 
 
+
+
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block"type="submit">Update Details</button>
+          <button class="btn btn-primary btn-lg btn-block"type="submit">Update Leave Details</button>
         </form>
         </div>
       </div>
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1 dev"> © Byte Optimizers</p>
+        <p class="mb-1 dev"> © SE C-12</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
           <li class="list-inline-item"><a href="#">Terms</a></li>
@@ -111,7 +119,6 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
 
 </body>
 

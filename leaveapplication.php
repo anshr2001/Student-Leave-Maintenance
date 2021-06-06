@@ -51,10 +51,10 @@
       </nav>
     </div>
   </section>
-  <h1 align="center">Leave Management System </h1>
-  <h2 align = "center"> Details </h2>
+  <h1>Leave Management System </h1>
+  <h2> Details </h2>
 
-  <hr size = "3" noshade color = "red">
+  <hr>
 
   <?php $PHP_SELF;?>
 </body>
@@ -69,6 +69,7 @@
 
   $studentroll = $_POST['studentroll'];
   $studentpassword = $_POST['studentpassword'];
+  $status_leave = "Pending";
 
   
 
@@ -87,9 +88,9 @@
 
     if(mysqli_num_rows($result) === 1)
     {
-      $stmt = $conn->prepare("INSERT INTO leavedetails(leavestartdate, numdays, leavetype, studentroll) VALUES (?,?,?,?)");
+      $stmt = $conn->prepare("INSERT INTO leavedetails(leavestartdate, numdays, leavetype, studentroll,status_leave) VALUES (?,?,?,?,?)");
 
-      $stmt->bind_param("siss", $leavestartdate, $numdays, $leavetype, $studentroll);
+      $stmt->bind_param("sisss", $leavestartdate, $numdays, $leavetype, $studentroll,$status_leave);
 
       $stmt->execute();
 

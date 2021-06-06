@@ -1,12 +1,14 @@
 
 
+
+
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Apply Leave</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <title> Download Leave History</title>
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:ital,wght@1,300&family=Roboto:wght@300&display=swap" rel="stylesheet">
   <!-- favicon -->
@@ -50,53 +52,32 @@
     <div class="container">
       <div class="pl-0 text-left">
         <br><br>
-        <h1>Provide details for Leave Application</h1>
+        <h1>View Uploaded Documents</h1>
         <br>
       </div>
       <div class="row">
         <div class="col-md-8 order-md-1 box">
-          <h4 class="mb-3">Profile Details</h4>
-          <form action="leaveapplication.php" method="post">
-  
+          <h4 class="mb-3">Details</h4>
+          <form action="download_leave.php" method="post">
+          
           <div class="col-md-6 mb-3">
             <label for="PrescriptionNo">Enter the Roll No</label>
             <input type="text" class="form-control" name = "studentroll" id="studentroll" required>
           </div>
-
 
           <div class="col-md-6 mb-3">
             <label for="MedicineName">Enter the Student's Password</label>
             <input type="password" class="form-control" name = "studentpassword" id="studentpassword" required>
           </div>
 
-		  <div class="col-md-6 mb-3">
-            <label for="leavedate">Choose the leave start date</label>
-  			<input type="date" class="form-control" name="leavestartdate" id="leavestartdate">
-          </div>    
-
-          <div class="col-md-6 mb-3">
-          	<label for="numdays">Number of Days of Leave (between 1 and 5):</label>
-			<input type="number" class="form-control" name="numdays" id="numdays" min="1" max="5"> 
-		</div>    
-
-		<div class="col-md-6 mb-3">
-            <label for="leavetype">Choose the Leave Type</label>
-            <select class="custom-select d-block w-100" name = "leavetype" id="leavetype" required>
-              <option value="">Choose...</option>
-              <option>Medical Leave</option>
-              <option>Family Leave</option>
-              <option>On-Duty Leave</option>
-              <option>Emergency Leave</option>
-            </select>
-        </div> 
 
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block"type="submit">Update Details</button>
+          <button class="btn btn-primary btn-lg btn-block"type="submit">Download the Leave History</button>
         </form>
         </div>
       </div>
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1 dev"> © Byte Optimizers</p>
+        <p class="mb-1 dev"> © C-12 Student Leave</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
           <li class="list-inline-item"><a href="#">Terms</a></li>

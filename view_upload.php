@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en">
 
@@ -38,7 +36,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="apply_leave.php"> Previous </a>
+              <a class="nav-link" href="view_upload.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -51,8 +49,6 @@
     </div>
   </section>
   <h1>Leave Management System </h1>
-  <h2> Details </h2>
-
   <hr>
  
   <?php $PHP_SELF;?>
@@ -63,65 +59,42 @@
 <?php
 
   $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
-  $studentpassword = $_POST['studentpassword'];
-
-
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
+
   if($conn->connect_error)
-    {
+  {
     die('Connection Failed :'.$conn -> connect_error);
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
-
-    $stmt->execute();
-    $stmt->close();
-
-    echo "<div align=center> Updated the Details Successfully </div>";
-  
-    echo "";
-
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
+  	$sql = "SELECT * FROM upload WHERE studentroll = '$studentroll'";
 
     $result = mysqli_query($conn, $sql);
 
     echo "<br>";
-    echo "<strong> Details After addition of the details </strong>";
+    echo "<strong> Uploaded Document Details </strong>";
     echo "<br>";
     echo "<table border='1' width = 200%>
           <tr>
           <th>Student Roll No</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Phone Number</th>
-          <th>Email</th>
+          <th>Leave Start Date</th>
+          <th>Image Uploaded</th>
           </tr>";
 
 
     while($row = mysqli_fetch_array($result) )
     {
-        echo "<tr>";
-        echo "<td> " . $row['studentroll'] . "</td> ";
-        echo " <td>" . $row['studentid'] . "</td>";
-        echo "<td>" . $row['studentname'] . "</td>";
-        echo "<td>" . $row['gender'] . "</td>";
+    	?>
 
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td>" . $row['phone_no'] . "</td>";
-        echo "<td>" . $row['pemail'] . "</td>";
-        echo "</tr>";
+        <tr>
+        	<td> <?php echo $row['studentroll']; ?> </td>
+        	<td> <?php echo $row['leavestartdate']; ?> </td>
+        	<td> <img src="<?php echo $row['doc']; ?>" height="750px" width = "850px"> </td>
+
+       </tr>
+       <?php
     }
     echo "</table>";
 
@@ -137,4 +110,4 @@
   }
 
 
- ?>
+?>

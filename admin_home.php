@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,6 +64,38 @@
 <section>
   <div class="bg"> 
 
+    <a href="view_upload.html">
+      <br>
+      <br>
+      <button type="submit" name="viewupload" class='button'><span>View Assisting Documents Of Students</span></button>
+    </a>
+
+    <p> An Admin can view the assisting documents of the students uploaded </p>
+
+    <a href="leave_approve.php">
+      <br>
+      <br>
+      <button type="submit" name="viewupload" class='button'><span>Approve or Reject Leave</span></button>
+    </a>
+
+    <p> An Admin can approve or reject the leaves applied by the students </p>
+
+    <a href="view_pending_leave.php">
+      <br>
+      <br>
+      <button type="submit" name="viewpending" class='button'><span>View Pending Leave Requests</span></button>
+    </a>
+
+    <p> An Admin can view all the Pending Leave requests applied by the students </p>
+
+    <a href="view_accept_leave.php">
+      <br>
+      <br>
+      <button type="submit" name="viewaccept" class='button'><span>View Accepted Leave Requests</span></button>
+    </a>
+
+    <p> An Admin can view all the Accepted Leave requests applied by the students </p>
+
     <a href="admin_update_profile.html"> 
     	<br>
     	<br>
@@ -85,10 +117,10 @@
 
 <footer class="bg-danger text-center spacing-2">
   <div id="contact">
-    <i class="social-icon fab fa-facebook-f"></i>
-    <i class="social-icon fab fa-twitter"></i>
-    <i class="social-icon fab fa-instagram"></i>
-    <i class="social-icon fas fa-envelope"></i>
+    <em class="social-icon fab fa-facebook-f"></em>
+    <em class="social-icon fab fa-twitter"></em>
+    <em class="social-icon fab fa-instagram"></em>
+    <em class="social-icon fas fa-envelope"></em>
     <p class="dev">© C12 - Leave</p>
   </div>
 </footer>

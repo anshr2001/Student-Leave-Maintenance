@@ -51,10 +51,10 @@
       </nav>
     </div>
   </section>
-  <h1 align="center">Leave Management System </h1>
-  <h2 align = "center"> Details </h2>
+  <h1>Leave Management System </h1>
+  <h2> Details </h2>
 
-  <hr size = "3" noshade color = "red">
+  <hr>
 
   <?php $PHP_SELF;?>
 </body>
@@ -102,7 +102,6 @@
     }
 
     $conn->close();
-    //header("Location: success.html");
   }
 
 

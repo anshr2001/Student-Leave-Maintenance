@@ -48,7 +48,7 @@
       </nav>
     </div>
   </section>
-  <h1 align="center">Leave Management System </h1>
+  <h1>Leave Management System </h1>
   <!-- <h2 align = "center"> Patients List </h2> -->
 
   <hr size = "3" noshade color = "red">
@@ -97,7 +97,6 @@
       $stmt->close();
 
       $conn->close();
-      //header("Location: success.html");
     }
     else
     {

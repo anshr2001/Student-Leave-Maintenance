@@ -1,6 +1,8 @@
 
 
 
+
+
 <!doctype html>
 <html lang="en">
 
@@ -19,7 +21,7 @@
   <!-- custom css -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- webpage title -->
-  <title>Update Profile ALMS</title>
+  <title>Leave History</title>
 </head>
 
 <body>
@@ -38,7 +40,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="apply_leave.php"> Previous </a>
+              <a class="nav-link" href="leave_history.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -50,11 +52,11 @@
       </nav>
     </div>
   </section>
-  <h1>Leave Management System </h1>
-  <h2> Details </h2>
+  <h1 align = 'center'>Leave Management System </h1>
+  <h2 align = 'center'> Leave History Details </h2>
 
   <hr>
- 
+
   <?php $PHP_SELF;?>
 </body>
 </html>
@@ -63,77 +65,73 @@
 <?php
 
   $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
   $studentpassword = $_POST['studentpassword'];
-
 
 
   //Connection
   $conn = new mysqli('localhost','root','','student');
   if($conn->connect_error)
-    {
+  {
     die('Connection Failed :'.$conn -> connect_error);
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
-
-    $stmt->execute();
-    $stmt->close();
-
-    echo "<div align=center> Updated the Details Successfully </div>";
-  
-    echo "";
-
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
-
+    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll' AND studentpassword = '$studentpassword'";
     $result = mysqli_query($conn, $sql);
 
-    echo "<br>";
-    echo "<strong> Details After addition of the details </strong>";
-    echo "<br>";
-    echo "<table border='1' width = 200%>
+    if(mysqli_num_rows($result) === 1)
+    {
+  
+    	echo "";
+
+    	$sql1 = "SELECT * FROM leavedetails WHERE studentroll = '$studentroll'";
+
+    	$result1 = mysqli_query($conn, $sql1);
+
+    	echo "<br>";
+    	echo "<strong> Applied Leave Details </strong>";
+    	echo "<br>";
+    	echo "<table border='1'>
           <tr>
-          <th>Student Roll No</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Phone Number</th>
-          <th>Email</th>
+      
+          <th>Student Roll</th>
+          <th>Leave Type</th>
+         
+          <th>Leave Start Date</th>
+          <th>Number Of Days</th>
+          <th>Status Of the Leave</th>
           </tr>";
 
 
-    while($row = mysqli_fetch_array($result) )
-    {
-        echo "<tr>";
-        echo "<td> " . $row['studentroll'] . "</td> ";
-        echo " <td>" . $row['studentid'] . "</td>";
-        echo "<td>" . $row['studentname'] . "</td>";
-        echo "<td>" . $row['gender'] . "</td>";
+    	while($row = mysqli_fetch_array($result1))
+    	{
+        	echo "<tr>";
+        	echo " <td>" . $row['studentroll'] . "</td>";
+        	echo "<td>" . $row['leavetype'] . "</td>";
+  
+        	echo "<td>" . $row['leavestartdate'] . "</td>";
+        	echo "<td>" . $row['numdays'] . "</td>";
+        	echo "<td>" . $row['status_leave'] . "</td>";
+        	echo "</tr>";
+    	}
+    	echo "</table>";
 
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td>" . $row['phone_no'] . "</td>";
-        echo "<td>" . $row['pemail'] . "</td>";
-        echo "</tr>";
+    	echo "<hr size = 3 noshade color = red>";
+    	echo "<div align = center> <strong> Leave Management System </strong> </div>";
+    	echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
+    	echo "<div align = center> <strong> Coimbatore</strong> </div>";
+    	echo "<hr size = 3 noshade color = red>";
+
+
+
+      	$conn->close();
+      	//header("Location: success.html");
     }
-    echo "</table>";
-
-    echo "<hr size = 3 noshade color = red>";
-    echo "<div align = center> <strong> Leave Management System </strong> </div>";
-    echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
-    echo "<div align = center> <strong> Coimbatore</strong> </div>";
-    echo "<hr size = 3 noshade color = red>";
-
-
-
-    $conn->close();
+    else
+    {
+      echo "<h1> Username and Password doesn't Match </h1>";
+    }
+    
   }
 
 

@@ -50,10 +50,10 @@
       </nav>
     </div>
   </section>
-  <h1 align="center">Leave Management System </h1>
-  <h2 align = "center"> Details </h2>
+  <h1>Leave Management System </h1>
+  <h2> Details </h2>
 
-  <hr size = "3" noshade color = "red">
+  <hr>
 
   <?php $PHP_SELF;?>
 </body>
@@ -85,7 +85,7 @@
     if(mysqli_num_rows($result) === 1)
     {
         $row = mysqli_fetch_assoc($result);
-        if(($row['adminid'] === $adminid))
+        if($row['adminid'] === $adminid)
         {
         	$conn1 = new mysqli('localhost','root','','student');
     		
@@ -150,7 +150,7 @@
     }
 
     $conn->close();
-    //header("Location: success.html");
+    
   }
 
 

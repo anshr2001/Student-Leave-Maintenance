@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en">
 
@@ -38,7 +36,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="apply_leave.php"> Previous </a>
+              <a class="nav-link" href="upload_doc.html"> Previous </a>
             </li>
             
             <li class="nav-item">
@@ -51,8 +49,6 @@
     </div>
   </section>
   <h1>Leave Management System </h1>
-  <h2> Details </h2>
-
   <hr>
  
   <?php $PHP_SELF;?>
@@ -63,78 +59,62 @@
 <?php
 
   $studentroll = $_POST['studentroll'];
-  $studentid = $_POST['studentid'];
-  
-  $studentname = $_POST['studentname'];
-  $gender = $_POST['gender'];
-  $age = $_POST['age'];
-  $phone_no = $_POST['phone_no'];
-  $pemail = $_POST['pemail'];
+  $leavestartdate = $_POST['leavestartdate'];
   $studentpassword = $_POST['studentpassword'];
+  $file = $_FILES['file'];
 
-
-
-  //Connection
   $conn = new mysqli('localhost','root','','student');
+
   if($conn->connect_error)
-    {
+  {
     die('Connection Failed :'.$conn -> connect_error);
   }
   else
   {
-    $stmt = $conn->prepare("UPDATE studentdetails SET studentid = '$studentid', studentname = '$studentname',gender = '$gender', age = '$age', phone_no = '$phone_no',pemail = '$pemail'  WHERE studentroll = '$studentroll' AND studentid = '$studentid' AND studentpassword = '$studentpassword'");
-
-    $stmt->execute();
-    $stmt->close();
-
-    echo "<div align=center> Updated the Details Successfully </div>";
-  
-    echo "";
-
-    $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll'";
-
+  	$sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll' AND studentpassword = '$studentpassword' ";
     $result = mysqli_query($conn, $sql);
 
-    echo "<br>";
-    echo "<strong> Details After addition of the details </strong>";
-    echo "<br>";
-    echo "<table border='1' width = 200%>
-          <tr>
-          <th>Student Roll No</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Phone Number</th>
-          <th>Email</th>
-          </tr>";
-
-
-    while($row = mysqli_fetch_array($result) )
+ 
+    if(mysqli_num_rows($result) === 1)
     {
-        echo "<tr>";
-        echo "<td> " . $row['studentroll'] . "</td> ";
-        echo " <td>" . $row['studentid'] . "</td>";
-        echo "<td>" . $row['studentname'] . "</td>";
-        echo "<td>" . $row['gender'] . "</td>";
 
-        echo "<td>" . $row['age'] . "</td>";
-        echo "<td>" . $row['phone_no'] . "</td>";
-        echo "<td>" . $row['pemail'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
+    	//}
+  		$filename = $file['name'];
+  		$fileerror = $file['error'];
+  		$filetmp = $file['tmp_name'];
 
-    echo "<hr size = 3 noshade color = red>";
-    echo "<div align = center> <strong> Leave Management System </strong> </div>";
-    echo "<div align = center> <strong> Amrita Vishwa Vidyapeetham </strong> </div>";
-    echo "<div align = center> <strong> Coimbatore</strong> </div>";
-    echo "<hr size = 3 noshade color = red>";
+  		$fileext = explode('.',$filename);
+  		$filecheck = strtolower(end($fileext));
 
+  		$fileextstored = array('png','jpg','jpeg');
 
+  		if(in_array($filecheck,$fileextstored))
+  		{
+  			$destinationfile = 'upload/'.$filename;
+  			move_uploaded_file($filetmp,$destinationfile);
 
-    $conn->close();
+  			$stmt = $conn->prepare("INSERT INTO upload(studentroll,leavestartdate,doc) VALUES (?,?,?)");
+
+      		$stmt->bind_param("sss", $studentroll, $leavestartdate, $destinationfile);
+
+      		$stmt->execute();
+
+      		echo "Uploaded Document Successfully";
+
+      		$stmt->close();
+
+      		$conn->close();
+  		}
+  		else
+  		{
+  			echo "Check the File type!! Expected only jpg,jpeg and png formats";
+  		}
+  	}
+  	else
+  	{
+  		echo "<h2> Student Roll Number and Password doesn't Match!! </h2>";
+  	}
   }
 
 
- ?>
+?>
