@@ -2,7 +2,6 @@
 <?php
 if(isset($_POST['approve']))
 {
-	//echo "Approved";
 	
 	$studentroll = $_POST['studentroll'];
   $leavestartdate = $_POST['leavestartdate'];
@@ -28,7 +27,7 @@ if(isset($_POST['approve']))
 
 if(isset($_POST['reject']))
 {
-	//echo "Reject";
+
 	$studentroll = $_POST['studentroll'];
 	$status = "Rejected";
   $leavestartdate = $_POST['leavestartdate'];

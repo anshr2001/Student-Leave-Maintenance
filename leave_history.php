@@ -52,8 +52,8 @@
       </nav>
     </div>
   </section>
-  <h1 align = 'center'>Leave Management System </h1>
-  <h2 align = 'center'> Leave History Details </h2>
+  <h1>Leave Management System </h1>
+  <h2> Leave History Details </h2>
 
   <hr>
 
@@ -125,7 +125,6 @@
 
 
       	$conn->close();
-      	//header("Location: success.html");
     }
     else
     {

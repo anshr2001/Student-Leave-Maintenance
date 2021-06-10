@@ -77,27 +77,35 @@
     $sql = "SELECT * FROM studentdetails WHERE studentroll = '$studentroll' AND studentpassword = '$studentpassword'";
     $result = mysqli_query($conn, $sql);
 
+
     if(mysqli_num_rows($result) === 1)
     {
 
-  		$sql1 = "DELETE FROM leavedetails WHERE leavestartdate = '$leavestartdate' AND studentroll = '$studentroll'";
+       $sql1 = "SELECT * FROM leavedetails WHERE leavestartdate = '$leavestartdate' AND studentroll = '$studentroll'
+                             AND status_leave = 'Pending'";
 
-  		//echo "$studentroll";
-  		//echo "";
-  		//echo "$leavestartdate";
+       $result1 = mysqli_query($conn, $sql1);
 
+       if(mysqli_num_rows($result1) === 1)
+       {
+          $sql1 = "DELETE FROM leavedetails WHERE leavestartdate = '$leavestartdate' AND studentroll = '$studentroll' AND status_leave = 'Pending'"; 
 
-		if(mysqli_query($conn, $sql1))
-		{
-    		echo "Record was deleted successfully.";
-		} 
-		else
-		{
-    		echo "NOT Deleted";
-		}
+          if(mysqli_query($conn, $sql1))
+          {
+              echo "Record was deleted successfully.";
+          }  
+          else
+          {
+              echo "Record NOT Deleted as Leave dates and Roll Number doesn't Match!!";
+          }
+       
+       }
+       else
+       {
+        echo "Record NOT Deleted!! Leave might got Accepted or Roll Number and Leave date doesn't Match";
+       }
 
       $conn->close();
-      //header("Location: success.html");
     }
     else
     {

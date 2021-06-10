@@ -14,7 +14,7 @@
   	<link rel="icon" href="css/images/favicon.ico">
   	<!-- custom css -->
   	<link rel="stylesheet" href="css/styles.css">
-	<title>Leave Application</title>
+	<title>Student Home Page</title>
 </head>
 <body>
 	<section>

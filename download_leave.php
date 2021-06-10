@@ -18,7 +18,7 @@
 
     if(mysqli_num_rows($result) === 1)
     {
-    	//$query = "SELECT * from leavedetails WHERE studentroll = '$studentroll'";
+    	
     	$query = "SELECT studentdetails.studentroll,studentdetails.studentid,studentdetails.studentname,leavedetails.leavestartdate, leavedetails.numdays,leavedetails.leavetype,leavedetails.status_leave,studentdetails.phone_no,studentdetails.pemail FROM studentdetails,leavedetails WHERE studentdetails.studentroll = leavedetails.studentroll AND studentdetails.studentroll = '$studentroll'";
 
     	header('Content-Type: text/csv; charset=utf-8');

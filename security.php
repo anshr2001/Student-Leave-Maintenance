@@ -93,12 +93,12 @@
 
         else
         {
-        	echo "<h2> Security Answers, Username and Roll Number doesn't Match </h2>";
+        	echo "<h2> Security Answers doesn't Match </h2>";
         }
     }
     else
     {
-    	echo "<h2> Security Answers, Username and Roll Number doesn't Match </h2>";
+    	echo "<h2> Username and Roll Number doesn't Match </h2>";
     }
 
     $conn->close();

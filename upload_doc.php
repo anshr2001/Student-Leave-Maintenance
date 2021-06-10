@@ -78,7 +78,6 @@
     if(mysqli_num_rows($result) === 1)
     {
 
-    	//}
   		$filename = $file['name'];
   		$fileerror = $file['error'];
   		$filetmp = $file['tmp_name'];

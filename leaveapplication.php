@@ -99,7 +99,6 @@
       $stmt->close();
 
       $conn->close();
-      //header("Location: success.html");
     }
     else
     {
